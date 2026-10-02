@@ -38,7 +38,7 @@ La herramienta puede ayudar a detectar, por ejemplo, que dos barrios con poblaci
 
 ## 03 · Qué analiza
 
-Los datos utilizados por el agente Matilda.AI se pueden encontrar en el branch [datos]url(https://github.com/efectomatilda/urbanChallengeGipuzkoa2026/tree/datos).
+Los datos utilizados por el agente Matilda.AI se pueden encontrar en el branch [datos](https://github.com/efectomatilda/urbanChallengeGipuzkoa2026/tree/datos).
 
 | Dimensión | Fuente | Periodo / escala | Qué permite estudiar |
 |---|---|---|---|
