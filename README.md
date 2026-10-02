@@ -194,7 +194,7 @@ MATILDA-AI/
 
 ## 09 · La web
 
-La carpeta `web/` contiene una **landing page estática** que presenta el problema, las fuentes, los hallazgos, la capa espacial por barrios, el funcionamiento del agente y las limitaciones.
+El archivo `website.md` contiene una **landing page estática** que presenta el problema, las fuentes, los hallazgos, la capa espacial por barrios, el funcionamiento del agente y las limitaciones.
 
 No necesita backend para mostrarse. Puede desplegarse directamente en servicios de hosting estático como Netlify o GitHub Pages.
 
