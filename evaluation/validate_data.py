@@ -9,7 +9,7 @@ def fail(msg):
 
 # Population
 pop = pd.read_csv(
-    DATA / "poblacion_barrio_2025_2.csv.csv",
+    DATA / "poblacion_barrio_2025_2.csv",
     sep=";",
     skiprows=1,
     header=1,
@@ -51,6 +51,28 @@ if counts.get("DENTRO_POLIGONO", 0) != 245:
     fail(f"Unexpected mapped stops: {counts}")
 if counts.get("SIN_ASIGNAR_EN_GEOJSON", 0) != 3:
     fail(f"Unexpected unassigned stops: {counts}")
+
+
+# Demography (2019 source)
+dem = pd.read_csv(DATA / "demografiapiramideedadbarrio2.csv", dtype=str)
+if len(dem) != 140:
+    fail(f"Unexpected demographic rows: {len(dem)}")
+if set(dem["Urtea"].astype(str)) != {"2019"}:
+    fail(f"Unexpected demographic years: {sorted(set(dem['Urtea'].astype(str)))}")
+if dem["Auzoa"].nunique() != 7:
+    fail(f"Unexpected demographic neighbourhood count: {dem['Auzoa'].nunique()}")
+
+# GeoJSON
+import json
+with (DATA / "barrios_donostia.json").open(encoding="utf-8-sig") as f:
+    gj = json.load(f)
+if gj.get("type") != "FeatureCollection":
+    fail(f"Unexpected GeoJSON type: {gj.get('type')}")
+features = gj.get("features", [])
+if len(features) != 20:
+    fail(f"Unexpected GeoJSON feature count: {len(features)}")
+if not all((feat.get("geometry") or {}).get("type") == "Polygon" for feat in features):
+    fail("GeoJSON contains a geometry that is not Polygon")
 
 # GTFS
 stop_times = pd.read_csv(DATA / "stop_times2.txt", dtype=str)
