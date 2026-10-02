@@ -6,8 +6,6 @@ Nuestro agente IA para la fase "Urban Challenge" de "Gipuzkoa AI Hackaton 2026".
 
 ### Seguridad y movilidad nocturna de las mujeres en Donostia-San Sebastián
 
-**Urban AI · Donostia-San Sebastián · Gipuzkoa**
-
 > **Preguntar. Comparar. Comprobar.**
 >
 > Una guía de análisis urbano para convertir datos dispersos en preguntas investigables, sin inventar lo que los datos no pueden demostrar.
@@ -18,13 +16,13 @@ Nuestro agente IA para la fase "Urban Challenge" de "Gipuzkoa AI Hackaton 2026".
 
 ## 01 · El proyecto
 
-**MATILDA.AI** es un agente de análisis de datos urbanos desarrollado para estudiar la **movilidad nocturna de las mujeres** en Donostia-San Sebastián y apoyar el trabajo de **Puntos Morados** y **Emakumeen Etxea**.
+**MATILDA.AI** es un agente de análisis de datos urbanos desarrollado por Efecto Matilda para estudiar la **movilidad nocturna de las mujeres** en Donostia-San Sebastián y apoyar el trabajo de **Puntos Morados** y **Emakumeen Etxea**.
 
-El proyecto parte de una pregunta sencilla, pero exige relacionar fuentes con escalas y capacidades diferentes:
+El proyecto parte de una pregunta sencilla:
 
-> **¿Qué patrones existen entre la distribución de la población femenina, la oferta programada de transporte nocturno Gautxori y los registros municipales de seguridad en Donostia-San Sebastián, y dónde se observan posibles diferencias de cobertura que requieran una investigación más detallada?**
+> **¿Qué patrones existen entre la distribución de la población femenina, la oferta programada de transporte nocturno Gautxori y los registros municipales de seguridad en Donostia-San Sebastián, y dónde se observan posibles diferencias de cobertura que requieran una mejora urbana?**
 
-MATILDA no pretende etiquetar barrios como “seguros” o “peligrosos”. Su función es **hacer visibles diferencias, comprobar cifras y señalar qué información falta para avanzar hacia un diagnóstico urbano más completo**.
+MATILDA no pretende etiquetar barrios como “seguros” o “peligrosos”. Su función es **hacer visibles diferencias, comprobar cifras y señalar qué falta para avanzar hacia un diagnóstico urbano más completo**.
 
 ---
 
@@ -34,7 +32,7 @@ La movilidad nocturna no depende de un único dato. Para entenderla hay que mira
 
 La versión actual de MATILDA añade una capa espacial al análisis: las coordenadas de las paradas del Gautxori se relacionan con los polígonos oficiales de los barrios. Esto permite pasar de una visión únicamente municipal a una comparación descriptiva por barrio.
 
-La herramienta puede ayudar a detectar, por ejemplo, que dos barrios con poblaciones femeninas diferentes presentan distribuciones distintas de paradas y pasos programados. Ese hallazgo **no decide una actuación**: abre una pregunta que puede investigarse con datos adicionales de accesibilidad, uso y experiencia de las usuarias.
+La herramienta puede ayudar a detectar, por ejemplo, que dos barrios con poblaciones femeninas diferentes presentan distribuciones distintas de paradas y pasos programados (cada paso equivale a un viaje Gautxori que pasa por una parada. Si, por ejemplo, la parada "Boulevard 3" aparece en 8 viajes de bus diferentes, serían 8 pasos programados para "Boulevard 3").
 
 ---
 
