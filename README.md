@@ -23,12 +23,12 @@ calcula indicadores reproducibles y explica sus límites.
 
 ### Demo
 
-- 🌐 Web: https://matildaai.netlify.app/
-- 🤖 Agente: [`agent/main.py`](agent/main.py)
-- 📚 Fuentes y límites: [`agent/FUENTES_8.md`](agent/FUENTES_8.md)
-- 📊 Datos: [`data/`](data/)
-- 🧪 Evaluación: [`evaluation/`](evaluation/)
-- 📖 Metodología: [`docs/methodology.md`](docs/methodology.md)
+- Web: https://matildaai.netlify.app/
+- Agente: [`agent/main.py`](agent/main.py)
+- Fuentes y límites: [`agent/FUENTES_8.md`](agent/FUENTES_8.md)
+- Datos: [`data/`](data/)
+- Evaluación: [`evaluation/`](evaluation/)
+- Metodología: [`docs/methodology.md`](docs/methodology.md)
 
 ---
 
