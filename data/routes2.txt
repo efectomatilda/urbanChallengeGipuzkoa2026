@@ -1,0 +1,15 @@
+route_id,agency_id,route_short_name,route_long_name,route_desc,route_type,route_url,route_color,route_text_color
+110,100,B10,Zubiaurre-Bidebieta-Buenavista,,3,,FFFFFF,8DC63F
+111,100,B11,San Roque,,3,,FFFFFF,8DC63F
+112,100,B12,Aldakonea,,3,,FFFFFF,8DC63F
+113,100,B13,Rodil,,3,,FFFFFF,8DC63F
+114,100,B14,Mendigain-Zorroaga-Hospitales,,3,,FFFFFF,8DC63F
+101,100,B1,BentaBerri-Berio-Añorga,,3,,FFFFFF,8DC63F
+102,100,B2,Aiete-Bera Bera,,3,,FFFFFF,8DC63F
+103,100,B3,Egia-Intxaurrondo,,3,,FFFFFF,8DC63F
+104,100,B4,Amara-Riberas-Martutene,,3,,FFFFFF,8DC63F
+105,100,B5,Aiete-Oriamendi-Miramón,,3,,FFFFFF,8DC63F
+106,100,B6,Altza,,3,,FFFFFF,8DC63F
+107,100,B7,Igeldo,,3,,FFFFFF,8DC63F
+108,100,B8,Miraconcha-Benta Berri-Seminar,,3,,FFFFFF,8DC63F
+109,100,B9,Amara-Errondo-Puio,,3,,FFFFFF,8DC63F
