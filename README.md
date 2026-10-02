@@ -88,6 +88,8 @@ urbanChallengeGipuzkoa2026/
 │   ├── script.js
 │   └── assets/
 │       └── matilda.png
+│       └── logo.png
+│
 │
 ├── .gitignore
 └── README.md
