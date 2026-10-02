@@ -38,6 +38,8 @@ La herramienta puede ayudar a detectar, por ejemplo, que dos barrios con poblaci
 
 ## 03 · Qué analiza
 
+Los datos utilizados por el agente Matilda.AI se pueden encontrar en el branch [datos]url(https://github.com/efectomatilda/urbanChallengeGipuzkoa2026/tree/datos).
+
 | Dimensión | Fuente | Periodo / escala | Qué permite estudiar |
 |---|---|---|---|
 | **Población femenina** | `poblacion_barrio_2025_2.csv` | 01/01/2025 · 18 barrios | Mujeres por barrio, concentración y ratios descriptivos |
