@@ -260,24 +260,4 @@ La siguiente evolución de MATILDA no consiste en asignar una etiqueta a cada ba
 
 El objetivo sería pasar de una **aproximación descriptiva de oferta** a una visión más completa de **accesibilidad potencial, oferta efectiva, uso, seguridad registrada y experiencia**.
 
----
-
-## 13 · Filosofía del proyecto
-
-MATILDA toma su nombre y su identidad visual de una **guía**: una figura que acompaña la lectura de los datos, pero no decide por quien los utiliza.
-
-Su principio central es:
-
-> **Preguntar. Comparar. Comprobar.**
-
-Una diferencia en los datos puede abrir una investigación. No debe convertirse automáticamente en una conclusión.
-
----
-
-<div align="center">
-
-**MATILDA.AI** · Urban AI · Donostia-San Sebastián
-
-_Análisis reproducible · datos reales · límites explícitos_
-
 </div>
