@@ -4,23 +4,23 @@
 
 > **Una guía de análisis urbano para preguntar, comparar y comprobar.**
 
-MATILDA.AI es un agente de análisis urbano creado para estudiar la movilidad nocturna y su relación contextual con la población femenina y los registros municipales de seguridad en **Donostia-San Sebastián**.
+MATILDA.AI es un agente de análisis urbano creado para estudiar la **movilidad nocturna** y su contexto en materia de población femenina y registros municipales de seguridad en **Donostia-San Sebastián**.
 
-Su objetivo no es etiquetar barrios como seguros o peligrosos ni tomar decisiones automáticamente. MATILDA.AI transforma datos urbanos en **preguntas investigables**, combina fuentes heterogéneas y hace explícitas sus limitaciones para ayudar a **Puntos Morados y Emakumeen Etxea** a orientar futuras investigaciones sobre accesibilidad y movilidad nocturna.
+Su propósito no es clasificar barrios como seguros o peligrosos ni tomar decisiones automáticamente. MATILDA.AI transforma datos urbanos heterogéneos en **preguntas investigables**, calcula indicadores reproducibles y hace explícitas las limitaciones de cada fuente para ayudar a **Puntos Morados y Emakumeen Etxea** a orientar futuras investigaciones sobre movilidad y accesibilidad nocturna.
 
 ---
 
-## 01 · El problema urbano
+## 01 · El reto urbano
 
-La movilidad nocturna no depende de un único dato. Para comprenderla mejor hay que observar, al menos, tres dimensiones:
+La movilidad nocturna no puede entenderse a partir de un único conjunto de datos. MATILDA.AI combina tres dimensiones principales:
 
-- **Dónde vive la población femenina.**
-- **Cómo se distribuye la oferta programada de transporte nocturno.**
-- **Qué muestran los registros municipales de seguridad y qué no permiten demostrar.**
+- **Población femenina:** dónde se concentra la población femenina residente.
+- **Movilidad nocturna:** cómo se distribuye territorial y temporalmente la oferta programada del Gautxori.
+- **Seguridad registrada:** qué muestran los registros municipales agregados y, sobre todo, qué no permiten demostrar.
 
-MATILDA.AI integra estas dimensiones y, a partir de la versión actual del proyecto, añade una capa espacial que permite asociar las paradas del Gautxori a los barrios mediante sus coordenadas y los polígonos oficiales disponibles.
+La versión actual añade una **capa espacial**: las coordenadas de las paradas del Gautxori se cruzan con los polígonos de los barrios para poder describir la oferta por barrio.
 
-La pregunta de investigación actual es:
+### Pregunta de investigación
 
 > **¿Qué patrones existen entre la distribución de la población femenina, la oferta programada de transporte nocturno Gautxori y los registros municipales de seguridad en Donostia-San Sebastián, y dónde se observan posibles diferencias de cobertura que requieran una investigación más detallada?**
 
@@ -31,35 +31,57 @@ La pregunta de investigación actual es:
 El agente puede:
 
 1. Analizar la población femenina por barrio.
-2. Analizar rutas, viajes, paradas y horarios programados del Gautxori mediante GTFS.
-3. Asociar espacialmente las paradas a barrios.
+2. Analizar rutas, viajes, paradas, horarios, calendarios y excepciones del Gautxori mediante GTFS.
+3. Asociar espacialmente las paradas del Gautxori a los barrios.
 4. Calcular pasos programados por barrio y por franja horaria.
 5. Comparar la oferta programada con la población femenina mediante indicadores descriptivos.
-6. Contextualizar estos resultados con los registros municipales agregados de seguridad.
-7. Separar de forma explícita **hechos, interpretaciones y límites**.
-8. Proponer qué datos adicionales serían necesarios para una siguiente fase de análisis urbano.
+6. Utilizar los registros municipales de seguridad como **contexto agregado**, manteniéndolos a escala municipal por sus limitaciones espaciales.
+7. Separar **hechos, interpretaciones y límites**.
+8. Identificar qué datos adicionales harían falta para una siguiente fase de análisis urbano.
+
+Los cálculos cuantitativos se realizan mediante la herramienta de ejecución de Python proporcionada por la plataforma del hackathon.
 
 ---
 
-## 03 · Arquitectura del proyecto
+## 03 · Estructura del repositorio
 
 ```text
-MATILDA-AI/
+urbanChallengeGipuzkoa2026/
 │
-├── agente/
+├── .github/
+│   └── workflows/
+│
+├── agent/
 │   ├── main.py
 │   ├── tools.py
 │   ├── FUENTES_8.md
-│   └── INSTRUCCIONES_V11_JSON.md
+│   └── README.md
 │
-├── datos/
-│   ├── población femenina 2025
-│   ├── población por edades 2019
-│   ├── seguridad municipal 2025–2026
-│   ├── GTFS Gautxori
+├── data/
+│   ├── README.md
+│   ├── poblacion_barrio_2025_2.csv
+│   ├── demografiapiramideedadbarrio2.csv
+│   ├── seguridad_donostia_2025_2026_2.csv
 │   ├── barrios_donostia.json
-│   └── gautxori_paradas_barrios.csv
+│   ├── gautxori_paradas_barrios.csv
+│   ├── agency2.txt
+│   ├── routes2.txt
+│   ├── trips2.txt
+│   ├── stops2.txt
+│   ├── stop_times2.txt
+│   ├── calendar2.txt
+│   ├── calendar_dates2.txt
+│   ├── shapes2.txt
+│   └── feed_info2.txt
 │
+├── demo/
+├── docs/
+│   ├── metodologia.md
+│   ├── preguntas_demo.md
+│   ├── limitaciones.md
+│   └── reproducibilidad.md
+│
+├── evaluation/
 ├── web/
 │   ├── index.html
 │   ├── styles.css
@@ -67,119 +89,105 @@ MATILDA-AI/
 │   └── assets/
 │       └── matilda.png
 │
-├── branding/
-├── docs/
-└── capturas/
+├── .gitignore
+└── README.md
 ```
 
-`main.py` contiene el comportamiento del agente. `tools.py` corresponde a la herramienta de ejecución proporcionada por la plataforma y se utiliza para ejecutar análisis reproducibles con Python.
+### Carpetas principales
+
+**`agent/`** contiene el agente y la configuración que utiliza la plataforma para ejecutarlo.
+
+**`data/`** contiene las fuentes de datos utilizadas por el proyecto y el archivo derivado necesario para el análisis espacial.
+
+**`docs/`** recoge metodología, preguntas de demostración, limitaciones y reproducibilidad.
+
+**`web/`** contiene la web pública de presentación del proyecto.
+
+**`evaluation/`** contiene material de validación del proyecto.
 
 ---
 
-# 04 · Fuentes de datos
+## 04 · Fuentes de datos
 
-La carpeta `datos/` contiene las fuentes utilizadas por el proyecto y los archivos derivados necesarios para el análisis espacial.
+La carpeta `data/` distingue entre **fuentes originales** y **archivos derivados**.
 
-## 4.1 Población femenina por barrios · 2025
+Para una explicación específica de cada archivo, consulta [`data/README.md`](data/README.md).
+
+### 4.1 · Población femenina por barrios · 2025
 
 **Archivo:** `poblacion_barrio_2025_2.csv`
 
-Fuente estadística utilizada para la población de 2025 por barrio.
+Fuente estadística utilizada para la población de la C.A. de Euskadi por barrios de municipios de más de 10.000 habitantes, según sexo, grupos de edad y nacionalidad, con fecha **01/01/2025**.
 
-La fuente corresponde a la población de Euskadi por barrios de municipios de más de 10.000 habitantes, según sexo, grupos de edad y nacionalidad, con fecha **01/01/2025**.
+En MATILDA.AI se utiliza principalmente la columna `Mujeres` para los 18 barrios de Donostia:
 
-Para MATILDA.AI, la magnitud principal es la columna **`Mujeres`**.
+Aiete, Altza, Amara Berri, Antiguo, Ategorrieta-Ulia, Añorga, Centro, Egia, Gros, Ibaeta, Igeldo, Intxaurrondo, Landarbaso, Loiola, Martutene, Miracruz-Bidebieta, Miramon-Zorroaga y Zubieta.
 
-En el bloque de Donostia aparecen los 18 barrios utilizados en el análisis:
+La fila municipal de Donostia / San Sebastián contiene **96.814 mujeres**, y la suma de los 18 barrios se utiliza como comprobación de consistencia.
 
-- Aiete
-- Altza
-- Amara Berri
-- Antiguo
-- Ategorrieta-Ulia
-- Añorga
-- Centro
-- Egia
-- Gros
-- Ibaeta
-- Igeldo
-- Intxaurrondo
-- Landarbaso
-- Loiola
-- Martutene
-- Miracruz-Bidebieta
-- Miramon-Zorroaga
-- Zubieta
+#### Lectura de las cifras
 
-La fila municipal de Donostia indica **96.814 mujeres**.
+El fichero utiliza el punto como separador de miles:
 
-### Regla de lectura
+```text
+7.354  →  7.354 personas
+520    →  520 personas
+165    →  165 personas
+```
 
-Los valores de población conservan el formato de miles del fichero original: por ejemplo, `7.354` representa **7.354 mujeres**, mientras que `520` representa **520**.
-
-MATILDA.AI valida que los 18 barrios del bloque de Donostia sumen la población femenina municipal utilizada como referencia.
+MATILDA conserva inicialmente los valores como texto y los convierte posteriormente para evitar interpretar de forma incorrecta los valores con formato de miles.
 
 ---
 
-## 4.2 Estructura demográfica por edades · 2019
+### 4.2 · Estructura demográfica por edades · 2019
 
 **Archivo:** `demografiapiramideedadbarrio2.csv`
 
-Fuente utilizada para análisis detallados por **grupo de edad y barrio**.
+Esta fuente se utiliza para consultas detalladas por **barrio y grupo de edad**.
 
-Características relevantes:
+- **Año:** 2019
+- **Registros:** 140
+- **Barrios:** 7
+- **Población femenina:** `PertsonenKopG`
+- **Barrio:** `Auzoa`
+- **Grupo de edad:** `AdinTartea`
 
-- Año: **2019**.
-- 140 registros.
-- 7 barrios.
-- Variable de población femenina: **`PertsonenKopG`**.
-- Barrio: **`Auzoa`**.
-- Grupo de edad: **`AdinTartea`**.
-
-Esta fuente se mantiene separada de la población de 2025: sus cifras de edad **no deben presentarse como población femenina actual de 2025**.
+Esta fuente **no representa la población femenina actual de 2025**. MATILDA mantiene explícitamente separados los años 2019 y 2025.
 
 ---
 
-## 4.3 Registros municipales de seguridad · 2025–2026
+### 4.3 · Registros municipales de seguridad · 2025–2026
 
 **Archivo:** `seguridad_donostia_2025_2026_2.csv`
 
 Cobertura:
 
-- Donostia-San Sebastián.
-- Enero–junio de 2025.
-- Enero–junio de 2026.
+- Donostia-San Sebastián
+- enero-junio de 2025
+- enero-junio de 2026
 
-Variables principales:
-
-- `periodo`
-- `municipio`
-- `tipo_infraccion`
-- valores de Ertzaintza
-- valores de Policía Local
-- `total_2025`
-- `total_2026`
-
-La fila **`TOTAL INFRACCIONES PENALES`** registra:
+La fila `TOTAL INFRACCIONES PENALES` registra:
 
 | Periodo | Total |
 |---|---:|
-| Enero–junio 2025 | 8.832 |
-| Enero–junio 2026 | 8.321 |
+| Enero-junio 2025 | 8.832 |
+| Enero-junio 2026 | 8.321 |
 
 Variación observada: **−511 registros**, aproximadamente **−5,8 %**.
 
-### Limitación espacial
+#### Limitación fundamental
 
-El fichero actual **no contiene barrio, calle, parada, coordenadas ni hora concreta de cada registro**.
+El fichero no contiene **barrio, calle, parada, coordenadas ni hora concreta de cada registro**.
 
-Por ello, MATILDA.AI no utiliza esta fuente para calcular peligrosidad por barrio ni para afirmar que una determinada zona sea más o menos segura. Los registros de seguridad se utilizan como **contexto municipal agregado**.
+Por ello, MATILDA utiliza estos datos únicamente como **contexto municipal agregado**. No los usa para calcular una supuesta peligrosidad por barrio ni para atribuir una categoría de infracción a una zona concreta.
+
+Tampoco son datos específicos de mujeres ni una medida completa de la inseguridad o de todas las experiencias de las usuarias.
 
 ---
 
-# 05 · Datos GTFS del Gautxori
+## 05 · Gautxori / GTFS
 
-La oferta programada del Gautxori se encuentra desglosada en los archivos GTFS:
+La oferta programada del Gautxori está distribuida en nueve archivos GTFS:
 
 ```text
 agency2.txt
@@ -193,23 +201,27 @@ shapes2.txt
 feed_info2.txt
 ```
 
-En conjunto permiten analizar:
+### Qué contiene cada archivo
 
-- agencia y metadatos del servicio;
-- rutas;
-- viajes programados;
-- paradas;
-- tiempos de llegada y salida programados;
-- calendario de servicio;
-- excepciones de calendario;
-- geometrías de las rutas;
-- información del feed.
+| Archivo | Función principal |
+|---|---|
+| `agency2.txt` | Información de la agencia o operador. |
+| `routes2.txt` | Definición de las rutas. |
+| `trips2.txt` | Viajes programados. |
+| `stops2.txt` | Paradas y sus coordenadas. |
+| `stop_times2.txt` | Horarios y pasos programados de cada viaje por parada. |
+| `calendar2.txt` | Calendario de los servicios. |
+| `calendar_dates2.txt` | Excepciones al calendario. |
+| `shapes2.txt` | Geometrías de los recorridos. |
+| `feed_info2.txt` | Metadatos del feed GTFS. |
 
-### Qué significa “oferta programada”
+En el análisis validado se identificaron **14 rutas definidas**, **8 rutas con viajes asociados** y **303 viajes programados**.
 
-El GTFS describe **cómo está planificado el servicio**, no cómo se utilizó realmente.
+El archivo `stop_times2.txt` contiene **5.716 registros de paso programados** en el análisis general del GTFS.
 
-Por tanto, estos datos no equivalen a:
+### Importante: “paso programado” no significa “pasajero”
+
+Los datos GTFS describen una **oferta planificada**. No equivalen a:
 
 - pasajeros;
 - demanda;
@@ -218,183 +230,180 @@ Por tanto, estos datos no equivalen a:
 - cancelaciones reales;
 - percepción de seguridad;
 - accesibilidad peatonal;
-- iluminación o calidad del entorno.
-
-En el análisis base validado se identificaron **14 rutas definidas**, **8 rutas con viajes asociados** y **303 viajes programados**.
-
-El archivo `stop_times2.txt` contiene **5.716 registros de paso programados** asociados a esos viajes. La distribución horaria observada se concentra especialmente entre la 01:00 y las 03:59.
+- calidad del entorno.
 
 ---
 
-# 06 · Delimitación oficial de los barrios
+## 06 · Capa espacial de barrios
 
 **Archivo:** `barrios_donostia.json`
 
-Este archivo contiene una `FeatureCollection` GeoJSON denominada **`Auzoak`** con geometrías de tipo **`Polygon`**.
+Es un archivo GeoJSON que contiene una `FeatureCollection` con geometrías de tipo `Polygon` y atributos de identificación de los barrios.
 
-Sus atributos incluyen, entre otros:
+El archivo se utiliza para determinar **qué polígono de barrio contiene la coordenada de cada parada** del Gautxori.
 
-- `KodAuzo`
-- `IzenAuzo`
+El objetivo es poder pasar de:
 
-El archivo se utiliza como referencia espacial para determinar en qué polígono de barrio cae cada parada del Gautxori.
+```text
+parada + coordenadas
+        ↓
+polígono de barrio
+        ↓
+barrio
+```
 
-### Por qué es necesario
-
-El GTFS proporciona las coordenadas de las paradas, pero no asigna por sí mismo cada parada a uno de los 18 barrios de la fuente de población.
-
-El GeoJSON permite realizar esa asociación mediante una operación espacial de **punto dentro de polígono**.
+La asignación espacial no se realiza por una simple coincidencia de texto entre nombres.
 
 ---
 
-# 07 · Archivo derivado: `gautxori_paradas_barrios.csv`
+## 07 · Archivo derivado: `gautxori_paradas_barrios.csv`
 
-Este archivo es una pieza clave de la versión actual de MATILDA.AI.
+Este archivo es una de las piezas centrales de la versión actual de MATILDA.AI.
 
-**No es una fuente original:** es un **archivo derivado** generado a partir de:
+**No es una fuente original.** Es un archivo derivado preparado a partir de:
 
 ```text
 stops2.txt
-      +
+    +
 barrios_donostia.json
-      ↓
- gautxori_paradas_barrios.csv
+    ↓
+gautxori_paradas_barrios.csv
 ```
 
-Su función es dejar preparada una correspondencia reproducible entre cada parada del Gautxori y el barrio correspondiente, cuando la coordenada de la parada cae dentro de un polígono.
+Su función es guardar una correspondencia reproducible entre cada parada del GTFS y el barrio cuyo polígono contiene sus coordenadas, cuando existe esa correspondencia.
 
-## 7.1 Columnas
+### Columnas principales
 
-| Columna | Descripción |
+| Columna | Significado |
 |---|---|
 | `stop_id` | Identificador de la parada en el GTFS. |
-| `stop_code` | Código de parada, cuando está disponible. |
+| `stop_code` | Código de parada, cuando existe. |
 | `stop_name` | Nombre de la parada. |
-| `stop_lat` | Latitud de la parada. |
-| `stop_lon` | Longitud de la parada. |
-| `codigo_barrio` | Código del barrio procedente de la capa espacial. |
-| `barrio` | Nombre normalizado del barrio utilizado por MATILDA.AI. |
-| `nombre_geojson` | Nombre original del barrio en el GeoJSON. |
-| `asignacion` | Resultado de la asignación espacial. |
+| `stop_lat` | Latitud. |
+| `stop_lon` | Longitud. |
+| `codigo_barrio` | Código del barrio asignado desde la capa espacial. |
+| `barrio` | Nombre normalizado utilizado por MATILDA. |
+| `nombre_geojson` | Nombre original procedente del GeoJSON. |
+| `asignacion` | Resultado de la correspondencia espacial. |
 
-## 7.2 Valores de `asignacion`
+### Estados de asignación
 
-### `DENTRO_POLIGONO`
+**`DENTRO_POLIGONO`**
 
-La coordenada de la parada queda dentro de uno de los polígonos de barrio disponibles.
+La coordenada de la parada queda dentro de un polígono de barrio. Estas filas pueden utilizarse en los análisis comparativos por barrio.
 
-Estas son las paradas que MATILDA.AI puede utilizar para los análisis por barrio.
+**`SIN_ASIGNAR_EN_GEOJSON`**
 
-### `SIN_ASIGNAR_EN_GEOJSON`
+La coordenada de la parada no queda dentro de ninguno de los polígonos utilizados para la asignación. Estas paradas se conservan, pero no se fuerzan a un barrio por inferencia.
 
-La parada no queda dentro de ningún polígono de barrio de la capa disponible.
+En el GTFS utilizado:
 
-En el archivo actual:
-
-- **248** paradas únicas.
-- **245** asignadas a un barrio.
+- **248** paradas únicas;
+- **245** asignadas a un barrio;
 - **3** sin asignación espacial.
 
-Las tres paradas sin asignar son:
+Las tres paradas sin asignar son `287`, `111` y `138`.
 
-| `stop_id` | Parada |
-|---:|---|
-| 287 | Errekalde II |
-| 111 | Herrera Euskotren |
-| 138 | Pasaiako Portua - Escalerillas |
+### Normalización de nombres
 
-Estas paradas **no se fuerzan** a ningún barrio por inferencia.
-
-## 7.3 Normalización de nombres
-
-El archivo derivado conserva tanto el nombre original del GeoJSON (`nombre_geojson`) como el nombre normalizado (`barrio`) utilizado para enlazarlo con la población de 2025.
-
-Ejemplos de normalización utilizados en el proyecto:
+Para poder cruzar la capa espacial con la fuente de población 2025, algunos nombres se normalizan:
 
 ```text
-AMARABERRI             → Amara Berri
-ERDIALDEA              → Centro
-ANTIGUA                → Antiguo
-LANDERBASO             → Landarbaso
-MIRAMON - ZORROAGA     → Miramon-Zorroaga
-ATEGORRIETA - ULIA     → Ategorrieta-Ulia
-MIRAKRUZ - BIDEBIETA   → Miracruz-Bidebieta
+AMARABERRI            → Amara Berri
+ERDIALDEA             → Centro
+ANTIGUA               → Antiguo
+LANDERBASO            → Landarbaso
+MIRAMON - ZORROAGA    → Miramon-Zorroaga
+ATEGORRIETA - ULIA    → Ategorrieta-Ulia
+MIRAKRUZ - BIDEBIETA  → Miracruz-Bidebieta
 ```
 
-Cuando el GeoJSON contiene nombres que no pertenecen al conjunto de los 18 barrios de la fuente de población, MATILDA.AI no inventa una equivalencia.
+El GeoJSON contiene también `OARAIN`, pero ese nombre no forma parte del conjunto de 18 barrios de la fuente de población 2025. MATILDA no le asigna una población por inferencia.
 
 ---
 
-# 08 · Cómo se construye el análisis espacial
+## 08 · Cómo se construye el análisis
 
-El flujo principal de la versión actual es:
+El flujo espacial y analítico de la versión actual es:
 
 ```text
 Población femenina 2025
           │
-          ├──────────────┐
-          │              │
-          ▼              ▼
- barrios_donostia.json   stops2.txt
-          │              │
-          └──────┬───────┘
-                 ▼
-    gautxori_paradas_barrios.csv
-                 │
-                 ▼
-          stop_times2.txt
-                 │
-                 ▼
+          │
+          ├───────────────┐
+          │               │
+          ▼               ▼
+barrios_donostia.json   stops2.txt
+          │               │
+          └───────┬───────┘
+                  ▼
+     gautxori_paradas_barrios.csv
+                  │
+                  ▼
+           stop_times2.txt
+                  │
+                  ▼
       pasos programados por barrio
-                 │
-                 ▼
-      indicadores descriptivos
+                  │
+                  ▼
+        indicadores descriptivos
 ```
 
-Esto permite estudiar, por barrio:
+Para una comparación por barrio, MATILDA:
 
-- número de paradas;
-- pasos programados;
-- pasos programados en determinadas franjas;
-- pasos por cada 1.000 mujeres.
+1. obtiene las 18 filas de población femenina de Donostia en 2025;
+2. utiliza `gautxori_paradas_barrios.csv` para localizar las paradas;
+3. cuenta `stop_id` únicos por barrio;
+4. relaciona `stop_times2.txt` mediante `stop_id`;
+5. cuenta registros de paso programados por barrio;
+6. filtra por `departure_time` cuando se solicita una franja horaria;
+7. calcula indicadores relativos cuando corresponde;
+8. conserva los 18 barrios y representa con 0 los barrios sin paradas asignadas;
+9. explica las limitaciones de esos indicadores.
 
 ---
 
-# 09 · Indicadores utilizados
+## 09 · Indicadores
 
-## Población femenina por barrio
+### Concentración de población femenina
 
 ```text
 mujeres del barrio / 96.814 × 100
 ```
 
-Representa la proporción de las mujeres contabilizadas en los 18 barrios respecto al total femenino municipal utilizado en la fuente de 2025.
+Mide qué proporción de las mujeres contabilizadas en los 18 barrios reside en cada barrio según la fuente de 01/01/2025.
 
-## Paradas por 1.000 mujeres
+### Paradas por 1.000 mujeres
 
 ```text
-paradas Gautxori / mujeres × 1.000
+paradas del Gautxori / mujeres × 1.000
 ```
 
-Es un **indicador descriptivo de distribución espacial de la oferta**.
+Es un indicador descriptivo de distribución espacial de la oferta.
 
-No mide accesibilidad real ni calidad del servicio.
-
-## Pasos programados por 1.000 mujeres
+### Pasos programados por 1.000 mujeres
 
 ```text
 pasos programados / mujeres × 1.000
 ```
 
-También es un indicador descriptivo. Se utiliza para comparar magnitudes de oferta programada con tamaños de población distintos.
+Es un indicador descriptivo para comparar magnitudes de oferta programada entre barrios con tamaños de población diferentes.
 
-No significa que ese número de mujeres tenga acceso al servicio ni que las personas utilicen el Gautxori.
+### Qué NO significan estos indicadores
+
+Un valor alto o bajo no demuestra por sí mismo:
+
+- mejor o peor movilidad;
+- mayor o menor accesibilidad real;
+- mayor o menor uso;
+- mayor o menor seguridad;
+- necesidad automática de crear o modificar una parada.
 
 ---
 
-# 10 · Resultados de referencia
+## 10 · Resultados de referencia
 
-Los análisis ya validados muestran, entre otros, los siguientes resultados:
+Los análisis validados de la versión actual muestran:
 
 ### Población femenina · 2025
 
@@ -408,7 +417,7 @@ Los cinco barrios con mayor población femenina son:
 | Gros | 9.408 |
 | Intxaurrondo | 7.811 |
 
-En conjunto representan **55.066 mujeres**, aproximadamente el **56,9 %** de las 96.814 mujeres de los 18 barrios analizados.
+Los cinco suman **55.066 mujeres**, aproximadamente el **56,9 %** de las 96.814 mujeres de los 18 barrios analizados.
 
 ### Gautxori · oferta programada
 
@@ -416,41 +425,50 @@ Sobre el GTFS completo se han contabilizado **5.716 registros de paso programado
 
 Entre **01:00 y 03:59** se concentran **4.230 registros**, el **74,0 %** del total analizado.
 
+### Población + Gautxori por barrio
+
+Al utilizar la correspondencia espacial disponible, **245 de las 248 paradas** quedan asignadas a los 18 barrios de referencia.
+
+En el análisis por barrio, los registros de `stop_times2.txt` asignables a esas paradas suman **5.624**. Los **92 registros restantes** corresponden a las tres paradas que no pudieron asignarse espacialmente a un polígono de barrio.
+
 ### Seguridad municipal
 
-La fila `TOTAL INFRACCIONES PENALES` pasa de **8.832** en enero–junio de 2025 a **8.321** en enero–junio de 2026, una diferencia de **−511 registros** (**−5,8 %**).
+La fila `TOTAL INFRACCIONES PENALES` pasa de **8.832** en enero-junio de 2025 a **8.321** en enero-junio de 2026: **−511 registros**, aproximadamente **−5,8 %**.
 
-Estos resultados deben leerse junto a las limitaciones descritas en este repositorio.
+Estas cifras de seguridad se mantienen a nivel municipal porque el fichero no incluye información espacial suficiente para relacionarlas directamente con barrios o paradas.
 
 ---
 
-# 11 · Qué MATILDA.AI no puede demostrar con estos datos
+## 11 · Qué no puede demostrar MATILDA.AI con los datos actuales
 
-El proyecto no permite afirmar, únicamente a partir de estas fuentes, que:
+Con las fuentes disponibles no se puede afirmar, únicamente a partir de estos datos, que:
 
 - un barrio sea seguro o peligroso;
-- una menor oferta relativa implique peor movilidad para las mujeres;
+- una menor oferta relativa implique peor movilidad para sus residentes;
 - el Gautxori reduzca las infracciones;
-- exista causalidad entre movilidad y seguridad;
-- los registros municipales representen toda la inseguridad o estén referidos específicamente a mujeres;
+- exista una relación causal entre movilidad y seguridad;
+- los registros municipales representen toda la inseguridad;
+- los registros de seguridad se refieran específicamente a mujeres;
 - los pasos programados equivalgan a personas usuarias;
-- un barrio con cero paradas dentro de su polígono carezca de cualquier alternativa de movilidad nocturna.
+- un barrio con cero paradas dentro de su polígono carezca de alternativas de movilidad nocturna.
 
-La seguridad disponible es municipal y agregada. La oferta del Gautxori es programada. La población es residencial. Estas dimensiones **no son equivalentes** y no deben interpretarse como si fueran una única variable.
+La población residente, la oferta programada y la seguridad registrada son **dimensiones diferentes**. No deben tratarse como si fueran una única medida.
 
 ---
 
-# 12 · Próxima fase de investigación
+## 12 · Siguiente fase
 
-La versión actual permite detectar diferencias descriptivas de oferta por barrio y franja horaria. Una fase posterior podría incorporar:
+La versión actual permite estudiar **diferencias descriptivas de oferta programada por barrio y franja horaria**.
+
+Para evaluar accesibilidad de forma más completa, una siguiente fase podría incorporar:
 
 ### Accesibilidad peatonal
 
 - red peatonal georreferenciada;
-- distancias y tiempos reales a pie;
+- tiempos y distancias reales a pie;
 - pendientes y escaleras;
 - barreras arquitectónicas;
-- características de las paradas;
+- características y accesibilidad de las paradas;
 - iluminación y condiciones del entorno.
 
 ### Servicio efectivo y uso
@@ -463,38 +481,39 @@ La versión actual permite detectar diferencias descriptivas de oferta por barri
 
 ### Seguridad y experiencia
 
-- incidentes georreferenciados y agregados;
+- incidentes georreferenciados y temporalmente agregados;
+- entorno de paradas y trayectos;
 - franjas horarias;
-- entornos de paradas o trayectos;
 - encuestas de percepción de seguridad;
 - experiencias de movilidad nocturna de las usuarias.
 
-El objetivo sería pasar de una medida de **oferta programada** a una comprensión más completa de la **accesibilidad, el uso y la experiencia** sin convertir los indicadores en etiquetas automáticas para barrios.
+El objetivo sería evolucionar desde **oferta programada** hacia una comprensión más completa de **accesibilidad, servicio efectivo, uso, seguridad registrada y experiencia**.
 
 ---
 
-# 13 · Transparencia y reproducibilidad
+## 13 · Transparencia y reproducibilidad
 
-MATILDA.AI sigue varias reglas de calidad:
+MATILDA.AI sigue unas reglas explícitas de calidad:
 
-- utiliza los archivos reales disponibles en el proyecto;
-- comprueba columnas y denominadores antes de calcular indicadores;
-- valida el bloque de 18 barrios de Donostia antes de usar la población femenina;
-- distingue datos de 2019 y 2025;
-- distingue fuentes originales de archivos derivados;
-- revisa las claves antes de combinar datasets;
-- no fuerza asignaciones espaciales cuando no existe correspondencia;
-- separa hechos, interpretaciones e hipótesis;
-- no convierte coincidencias en causalidad;
-- explicita las limitaciones de cada fuente.
+- trabajar con los archivos reales disponibles en el proyecto;
+- comprobar columnas, claves y denominadores antes de calcular indicadores;
+- validar el bloque de los 18 barrios de Donostia antes de utilizar la población femenina;
+- mantener separados los años 2019 y 2025;
+- distinguir las fuentes originales de los archivos derivados;
+- no forzar asignaciones espaciales cuando no existe correspondencia;
+- diferenciar hechos, interpretaciones e hipótesis;
+- no convertir coincidencias en causalidad;
+- indicar las limitaciones relevantes junto a los resultados.
 
-La metodología detallada y las reglas de lectura se encuentran en `agente/FUENTES_8.md`.
+La metodología detallada se encuentra en [`docs/metodologia.md`](docs/metodologia.md).
+
+Las preguntas recomendadas para la demostración se encuentran en [`docs/preguntas_demo.md`](docs/preguntas_demo.md).
+
+La descripción específica de los datasets se encuentra en [`data/README.md`](data/README.md).
 
 ---
 
-# 14 · Cómo probar el agente
-
-Algunas preguntas de demostración:
+## 14 · Cómo probar MATILDA.AI
 
 ### Población
 
@@ -518,55 +537,42 @@ Algunas preguntas de demostración:
 
 ---
 
-# 15 · Estructura de los datos del repositorio
+## 15 · Web del proyecto
+
+La web pública de presentación acompaña al agente y resume el problema, los datos, los hallazgos, la capa espacial por barrios, las limitaciones y la siguiente fase.
+
+**Web:** https://matildaai.netlify.app/
+
+El código de la web está disponible en la carpeta [`web/`](web/).
+
+---
+
+## 16 · Nota sobre los datos derivados
+
+`gautxori_paradas_barrios.csv` se incluye para que la relación espacial entre paradas y barrios pueda reutilizarse de forma consistente en el análisis.
+
+Su contenido debe interpretarse como un **resultado de procesamiento geográfico**, no como una fuente independiente del Ayuntamiento o del operador de transporte.
+
+La trazabilidad se mantiene mediante la relación:
 
 ```text
-datos/
-├── poblacion_barrio_2025_2.csv
-├── demografiapiramideedadbarrio2.csv
-├── seguridad_donostia_2025_2026_2.csv
-│
-├── agency2.txt
-├── routes2.txt
-├── trips2.txt
-├── stops2.txt
-├── stop_times2.txt
-├── calendar2.txt
-├── calendar_dates2.txt
-├── shapes2.txt
-├── feed_info2.txt
-│
-├── barrios_donostia.json
-└── gautxori_paradas_barrios.csv
+stops2.txt + barrios_donostia.json
+                ↓
+gautxori_paradas_barrios.csv
 ```
 
-### Original vs. derivado
+---
 
-**Fuentes originales / de entrada**
+## 17 · Privacidad y uso responsable
 
-- población 2025;
-- pirámide demográfica 2019;
-- seguridad municipal 2025–2026;
-- archivos GTFS del Gautxori;
-- delimitación espacial de barrios.
+El proyecto utiliza fuentes urbanas y estadísticas agregadas. No pretende publicar trayectorias individuales ni información personal.
 
-**Archivo derivado**
-
-- `gautxori_paradas_barrios.csv`.
-
-El archivo derivado permite repetir de forma consistente el análisis espacial sin tener que recalcular cada vez la asignación punto-polígono.
+Para futuras ampliaciones con datos de seguridad, movilidad o uso del transporte, MATILDA.AI plantea trabajar con niveles de agregación espacial y temporal suficientes para proteger la privacidad y evitar la identificación de personas o incidentes individuales.
 
 ---
 
-# 16 · Nota sobre datos y privacidad
+## MATILDA.AI
 
-El proyecto está planteado sobre datos agregados y fuentes de carácter urbano/estadístico. No se pretende publicar información personal ni trayectorias individuales.
+**Preguntar. Comparar. Comprobar.**
 
-Para una futura ampliación, los datos de seguridad y uso del transporte deberían solicitarse con un nivel de agregación suficiente para proteger la privacidad, especialmente cuando se incorporen coordenadas y dimensión temporal.
-
----
-
-## MATILDA.AI · Preguntar. Comparar. Comprobar.
-
-**Donostia-San Sebastián · Urban AI · Movilidad nocturna · Datos abiertos · Análisis reproducible**
-
+Donostia-San Sebastián · Urban AI · Movilidad nocturna · Datos abiertos · Análisis reproducible
