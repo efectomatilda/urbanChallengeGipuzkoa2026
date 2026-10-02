@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="MATILDA.AI — análisis urbano de población femenina y movilidad nocturna en Donostia-San Sebastián.">
+  <title>MATILDA.AI | Seguridad y movilidad nocturna</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="#inicio" aria-label="MATILDA.AI inicio">
+      <img class="brand-logo" src="assets/logo.png" alt="Logo de MATILDA.AI">
+      <span>MATILDA<span class="dot">.AI</span></span>
+    </a>
+    <button class="menu" type="button" aria-label="Abrir menú" aria-expanded="false">☰</button>
+    <nav id="main-nav">
+      <a href="#proyecto">Proyecto</a>
+      <a href="#datos">Datos</a>
+      <a href="#hallazgos">Hallazgos</a>
+      <a href="#barrios">Barrios</a>
+      <a href="#metodo">Cómo funciona</a>
+      <a href="#futuro">Siguiente fase</a>
+    </nav>
+  </div>
+</header>
+
+<main id="inicio">
+<section class="hero">
+  <div class="hero-glow glow-one"></div>
+  <div class="hero-glow glow-two"></div>
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <div class="eyebrow"><span></span> URBAN AI · DONOSTIA-SAN SEBASTIÁN</div>
+      <h1>La ciudad de noche,<br><em>vista con otros ojos.</em></h1>
+      <p class="lead">MATILDA.AI convierte datos urbanos en preguntas que se pueden investigar: dónde vive la población femenina, cómo se distribuye la oferta nocturna del Gautxori y qué información necesitamos para entender mejor la accesibilidad.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="#hallazgos">Ver hallazgos</a>
+        <a class="btn btn-light" href="#proyecto">Conocer el proyecto</a>
+      </div>
+      <p class="micro-note"><span class="pulse"></span> Análisis reproducible · Python · datos reales · límites explícitos</p>
+    </div>
+
+    <div class="matilda-card">
+      <div class="photo-wrap">
+        <img src="assets/matilda.png" alt="Matilda, guía visual del proyecto MATILDA.AI">
+        <div class="photo-tint"></div>
+        <div class="guide-badge"><span class="badge-dot"></span> GUÍA MATILDA</div>
+        <div class="caption">
+          <strong>Preguntar. Comparar. Comprobar.</strong>
+          <span>Una guía para entender la noche sin inventar lo que los datos no dicen.</span>
+        </div>
+      </div>
+      <div class="guide-bottom">
+        <div><small>POBLACIÓN FEMENINA</small><strong>96.814</strong></div>
+        <div><small>GTFS ASIGNABLE A BARRIOS</small><strong>5.624</strong></div>
+        <div><small>INFRACCIONES 2026</small><strong>8.321</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="statement" id="proyecto">
+  <div class="wrap statement-grid">
+    <div>
+      <span class="kicker">EL PROBLEMA URBANO</span>
+      <h2>Entender si la oferta nocturna acompaña a dónde vive la población femenina.</h2>
+    </div>
+    <div class="statement-copy">
+      <p>MATILDA.AI estudia la distribución territorial y temporal del Gautxori en relación con la población femenina de los barrios de Donostia-San Sebastián.</p>
+      <p>Los registros municipales de seguridad se utilizan como <strong>contexto agregado</strong>, porque no contienen barrio, parada, coordenadas ni hora individual del incidente.</p>
+      <div class="quote">No buscamos etiquetar barrios. Buscamos hacer visibles las preguntas que merece la pena investigar.</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="datos">
+  <div class="wrap">
+    <div class="section-head">
+      <div><span class="kicker">01 · DATOS</span><h2>Tres fuentes.<br>Una mirada urbana.</h2></div>
+      <p>La herramienta trabaja con el alcance real de cada fuente y mantiene sus limitaciones visibles.</p>
+    </div>
+    <div class="cards-3">
+      <article class="data-card">
+        <div class="card-top"><span class="index">01</span><span class="pill">01/01/2025</span></div>
+        <h3>Población femenina</h3>
+        <p>18 barrios de Donostia, con población por sexo y grupos de edad.</p>
+        <div class="metric"><strong>96.814</strong><span>mujeres</span></div>
+      </article>
+      <article class="data-card accent">
+        <div class="card-top"><span class="index">02</span><span class="pill">GTFS</span></div>
+        <h3>Gautxori</h3>
+        <p>Rutas, viajes, paradas, horarios y calendarios del servicio nocturno.</p>
+        <div class="metric"><strong>5.716</strong><span>registros de paso totales</span></div>
+        <small class="metric-note">5.624 se pueden asignar a barrios con los polígonos disponibles.</small>
+      </article>
+      <article class="data-card">
+        <div class="card-top"><span class="index">03</span><span class="pill">2025 → 2026</span></div>
+        <h3>Seguridad</h3>
+        <p>Registros municipales agregados para el conjunto de Donostia-San Sebastián.</p>
+        <div class="metric"><strong>−5,8%</strong><span>total de infracciones penales</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section soft" id="hallazgos">
+  <div class="wrap">
+    <div class="section-head">
+      <div><span class="kicker">02 · HALLAZGOS</span><h2>Lo que MATILDA<br>puede demostrar hoy.</h2></div>
+      <p>Resultados calculados con los archivos disponibles en la versión validada del agente.</p>
+    </div>
+
+    <div class="finding-grid">
+      <article class="finding-card large">
+        <span class="mini">POBLACIÓN</span>
+        <h3>Más de la mitad se concentra en cinco barrios</h3>
+        <p>Amara Berri, Centro, Altza, Gros e Intxaurrondo reúnen el <strong>56,9%</strong> de las mujeres de los 18 barrios analizados.</p>
+        <div class="finding-number"><strong>55.066</strong><span>mujeres</span></div>
+      </article>
+      <article class="finding-card">
+        <span class="mini">MADRUGADA</span>
+        <h3>La oferta se concentra entre la 01:00 y las 03:59</h3>
+        <p>De los 5.716 registros GTFS, <strong>4.230</strong> caen en esa franja horaria cuando se analiza el conjunto del servicio.</p>
+        <div class="finding-number"><strong>74%</strong><span>del total GTFS</span></div>
+      </article>
+      <article class="finding-card">
+        <span class="mini">SEGURIDAD</span>
+        <h3>El registro municipal agregado cambia</h3>
+        <p>El total de infracciones penales pasa de <strong>8.832</strong> a <strong>8.321</strong> entre enero-junio de 2025 y 2026.</p>
+        <div class="finding-number"><strong>−511</strong><span>registros</span></div>
+      </article>
+    </div>
+
+    <div class="facts-strip">
+      <span class="facts-label">EN UNA FRASE</span>
+      <p>Hay diferencias territoriales y temporales en la oferta programada; eso abre preguntas de accesibilidad, pero no demuestra por sí solo una mejor o peor seguridad.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="barrios">
+  <div class="wrap">
+    <div class="section-head">
+      <div><span class="kicker">03 · BARRIOS</span><h2>La nueva capa espacial<br>de MATILDA.</h2></div>
+      <p>Las paradas se asignan a los polígonos oficiales disponibles y se comparan con la población femenina de 2025.</p>
+    </div>
+
+    <div class="barrios-layout">
+      <div class="barrios-intro">
+        <div class="big-stat"><strong>245</strong><span>paradas asignadas<br>en 18 barrios</span></div>
+        <div class="big-stat"><strong>2,531</strong><span>paradas por 1.000<br>mujeres, promedio descriptivo</span></div>
+        <div class="callout"><strong>Cómo leerlo</strong><span>Es una medida de distribución espacial de la oferta. No mide frecuencia, demanda, uso ni accesibilidad real.</span></div>
+      </div>
+
+      <div class="bar-chart" aria-label="Ejemplos de oferta de paradas por barrio">
+        <div class="chart-head"><span>Ejemplos de paradas Gautxori</span><span>paradas</span></div>
+        <div class="bar-row"><span>Aiete</span><div class="track"><span style="width:100%"></span></div><strong>39</strong></div>
+        <div class="bar-row"><span>Altza</span><div class="track"><span style="width:79.5%"></span></div><strong>31</strong></div>
+        <div class="bar-row"><span>Centro</span><div class="track"><span style="width:61.5%"></span></div><strong>24</strong></div>
+        <div class="bar-row"><span>Antiguo</span><div class="track"><span style="width:61.5%"></span></div><strong>24</strong></div>
+        <div class="bar-row"><span>Intxaurrondo</span><div class="track"><span style="width:66.7%"></span></div><strong>26</strong></div>
+        <div class="bar-row"><span>Amara Berri</span><div class="track"><span style="width:43.6%"></span></div><strong>17</strong></div>
+        <div class="chart-foot">Hay 3 paradas del GTFS que no quedan dentro de ningún polígono disponible; por eso 245 de 248 se asignan a barrio.</div>
+      </div>
+    </div>
+
+    <div class="comparison-note">
+      <div><span class="note-icon">↔</span><h3>Comparar no es clasificar</h3></div>
+      <p>Por ejemplo, Gros registra 6 paradas y 9.408 mujeres, mientras Añorga registra 12 paradas y 1.396 mujeres. La diferencia es descriptiva; para hablar de accesibilidad real necesitamos distancia a pie, frecuencia efectiva y uso.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section warm" id="metodo">
+  <div class="wrap">
+    <div class="section-head">
+      <div><span class="kicker">04 · CÓMO FUNCIONA</span><h2>Matilda piensa como una guía:<br>pregunta, comprueba y explica.</h2></div>
+      <p>Las respuestas analíticas pasan por ejecución de Python y validación de los datos antes de concluir.</p>
+    </div>
+
+    <div class="steps">
+      <article><span>01</span><h3>Pregunta</h3><p>Una cuestión urbana abierta, formulada para poder comparar y profundizar.</p></article>
+      <article><span>02</span><h3>Consulta</h3><p>MATILDA selecciona los archivos relevantes y ejecuta los cálculos necesarios.</p></article>
+      <article><span>03</span><h3>Comprueba</h3><p>Revisa filtros, denominadores, periodos y correspondencias territoriales.</p></article>
+      <article><span>04</span><h3>Explica</h3><p>Distingue hechos, interpretación y aquello que los datos todavía no permiten afirmar.</p></article>
+    </div>
+
+    <div class="guide-panel">
+      <div class="guide-mini-photo"><img src="assets/matilda.png" alt="Matilda"></div>
+      <div class="guide-dialog">
+        <span class="mini">UNA RESPUESTA DE MATILDA</span>
+        <div class="dialogue user-line">¿Podemos decir qué barrios son más inseguros?</div>
+        <div class="dialogue matilda-line">No con estos datos. La seguridad está agregada para toda Donostia y no tiene barrio, parada ni hora individual. Sí puedo comparar la oferta programada del Gautxori y señalar qué información falta.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section dark" id="limites">
+  <div class="wrap">
+    <div class="dark-grid">
+      <div>
+        <span class="kicker light">05 · TRANSPARENCIA</span>
+        <h2>Lo que MATILDA<br>no puede demostrar.</h2>
+        <p>Una parte del valor del agente está en hacer visibles sus límites, no en esconderlos.</p>
+      </div>
+      <div class="limits-list">
+        <div><b>01</b><span><strong>Un barrio “seguro” o “peligroso”</strong><small>Los registros de seguridad no están espacializados.</small></span></div>
+        <div><b>02</b><span><strong>Accesibilidad real</strong><small>Faltan distancias a pie, barreras, pendientes y red peatonal.</small></span></div>
+        <div><b>03</b><span><strong>Uso del Gautxori</strong><small>El GTFS muestra programación, no pasajeros, demanda ni ocupación.</small></span></div>
+        <div><b>04</b><span><strong>Causalidad</strong><small>No se puede afirmar que más transporte provoque cambios en seguridad.</small></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section future" id="futuro">
+  <div class="wrap">
+    <div class="section-head">
+      <div><span class="kicker">06 · SIGUIENTE FASE</span><h2>De la oferta programada<br>a la accesibilidad real.</h2></div>
+      <p>La siguiente evolución necesita nuevos datos y una lectura participativa junto a las usuarias.</p>
+    </div>
+    <div class="future-grid">
+      <article><span>01</span><h3>Acceso peatonal</h3><p>Red peatonal, tiempos de caminata, iluminación, barreras, pendientes y características de las paradas.</p></article>
+      <article><span>02</span><h3>Servicio efectivo</h3><p>Viajes realizados, retrasos, cancelaciones, intervalos reales y uso por parada y franja.</p></article>
+      <article><span>03</span><h3>Seguridad + experiencia</h3><p>Datos agregados por zona y franja horaria, junto a encuestas, entrevistas y experiencias de las mujeres.</p></article>
+    </div>
+    <div class="future-quote"><strong>La pregunta siguiente es tan importante como la respuesta.</strong><span>MATILDA.AI no decide dónde actuar. Ayuda a descubrir qué merece ser estudiado a continuación.</span></div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap cta-box">
+    <div>
+      <span class="kicker">MATILDA.AI</span>
+      <h2>Preguntar mejor también es<br>una forma de cuidar la ciudad.</h2>
+      <p>Seguridad y movilidad nocturna · Donostia-San Sebastián</p>
+    </div>
+    <a class="btn btn-primary" href="#inicio">Volver arriba ↑</a>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <div class="brand footer-brand"><img class="brand-logo" src="assets/logo.png" alt="Logo de MATILDA.AI"><span>MATILDA<span class="dot">.AI</span></span></div>
+    <span>Datos urbanos · transparencia · investigación</span>
+    <span>Donostia-San Sebastián</span>
+  </div>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>
