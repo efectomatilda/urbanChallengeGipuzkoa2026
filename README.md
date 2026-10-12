@@ -573,6 +573,12 @@ Para futuras ampliaciones con datos de seguridad, movilidad o uso del transporte
 
 ---
 
+## 18 · Equipo
+
+Universidad de Deusto. Alena Lorenzo Macho, Oihane Villambrosa Blesa, Ainhoa Rey Cuesta.
+
+---
+
 ## MATILDA.AI
 
 **Preguntar. Comparar. Comprobar.**
